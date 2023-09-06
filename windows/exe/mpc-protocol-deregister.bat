@@ -2,9 +2,9 @@
 @echo.
 echo If you see "ERROR: Access is denied." then you need to right click and use "Run as Administrator".
 @echo.
-echo Removing vlc:// association...
+echo Removing mpc-hc:// association...
 
-reg delete HKCR\vlc /f
+reg delete HKCR\mpc-hc /f
 
 @echo.
 pause

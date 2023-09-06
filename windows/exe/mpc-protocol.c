@@ -20,7 +20,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     *q = '\0';
   }
 
-  // Strip vlc://
+  // Strip mpc-hc://
   wchar_t *url = pCmdLine+6;
 
   // Only allow urls starting with http:// or https://
@@ -34,11 +34,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
   DWORD buflen = sizeof(encoded_url)/sizeof(wchar_t);
   UrlEscapeSpaces(url, encoded_url, &buflen);
 
-  // Get vlc.exe path
+  // Get mpc-hc64.exe path
   wchar_t path[MAX_PATH];
   GetModuleFileName(NULL, path, ARRAY_SIZE(path));
   PathRemoveFileSpec(path);
-  wcscat(path, L"\\vlc.exe");
+  wcscat(path, L"\\mpc-hc64.exe");
 
   // Assemble arguments
   wchar_t *args = malloc(sizeof(wchar_t)*(wcslen(encoded_url)+20));
@@ -46,7 +46,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
   wcscat(args, encoded_url);
   wcscat(args, L"\"");
 
-  // Start vlc.exe
+  // Start mpc-hc64.exe
   int ret = (INT_PTR) ShellExecute(NULL, NULL, path, args, NULL, SW_SHOWNORMAL);
   if (ret <= 32) {
     return ret;
